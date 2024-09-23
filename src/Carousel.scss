@@ -11,7 +11,7 @@
   $numOfParts: 4;
   $animTime: 1s;
   $stagger: 0.08s;
-  $sliderReadyTrans: all $animTime/2 $animTime;
+  $sliderReadyTrans: all calc($animTime / 2) $animTime;
   $maxLettersStagger: 6;
   $letterStagger: 0.1s;
 
@@ -77,7 +77,7 @@
       }
 
       &-content {
-        z-index: $numOfParts + 2;;
+        z-index: $numOfParts + 2;
         position: relative;
         display: flex;
         justify-content: center;
@@ -90,10 +90,10 @@
 
       @mixin subTextsActiveSlide {
         opacity: 0;
-        transition: $animTime/2;
+        transition: calc($animTime / 2);
 
         @include slideActive {
-          transition-delay: $animTime*0.65;
+          transition-delay: calc($animTime * 0.65);
           opacity: 1;
           transform: translateY(0);
         }
@@ -119,11 +119,11 @@
         span {
           display: block;
           opacity: 0;
-          transform: translateY($fontSize*-1);
-          transition: all $animTime/3;
+          transform: translateY(calc($fontSize * -1));
+          transition: all calc($animTime / 3);
 
           @include slidePrev {
-            transform: translateY($fontSize)
+            transform: translateY($fontSize);
           }
 
           @include slideActive {
@@ -133,23 +133,23 @@
 
           @for $i from 1 through $maxLettersStagger {
             &:nth-child(#{$i}) {
-              $delay: $letterStagger * ($i - 1);
+              $delay: calc($letterStagger * ($i - 1));
 
               transition-delay: $delay;
 
               @include slideActive {
-                transition-delay: $delay + $animTime/3;
+                transition-delay: calc($delay + $animTime / 3);
               }
             }
           }
 
-          &:nth-child(n+#{$maxLettersStagger + 1}) {
-            $delay: $letterStagger * $maxLettersStagger;
+          &:nth-child(n + #{$maxLettersStagger + 1}) {
+            $delay: calc($letterStagger * $maxLettersStagger);
 
             transition-delay: $delay;
 
             @include slideActive {
-              transition-delay: $delay + $animTime/3;
+              transition-delay: calc($delay + $animTime / 3);
             }
           }
         }
@@ -172,7 +172,7 @@
           top: -3px;
           width: calc(100% + 4px);
           height: calc(100% + 6px);
-          background: rgba(255,255,255,0.4);
+          background: rgba(255, 255, 255, 0.4);
           transform: scaleX(0.3);
           transform-origin: 0 50%;
           transition: transform 0.3s;
@@ -199,19 +199,19 @@
           top: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,0.1);
+          background: rgba(0, 0, 0, 0.1);
         }
       }
 
       &-part {
-        $partW: (100vw / $numOfParts);
+        $partW: calc(100vw / $numOfParts);
 
         position: relative;
-        width: percentage(1 / $numOfParts);
+        width: percentage(calc(1 / $numOfParts));
         height: 100%;
 
         $partRef: &;
-        $imageFadeAT: $animTime/4;
+        $imageFadeAT: calc($animTime / 4);
 
         &-inner {
           overflow: hidden;
@@ -220,7 +220,7 @@
           height: 100%;
           background-size: 0 0;
           background-repeat: no-repeat;
-          transition: transform $animTime/2 ease-in-out;
+          transition: transform calc($animTime / 2) ease-in-out;
 
           &:before {
             content: '';
@@ -236,20 +236,20 @@
 
           @for $i from 1 through $numOfParts {
             #{$partRef}:nth-child(#{$i}) & {
-              $delayOut: ($numOfParts - $i) * $stagger;
-              $delayIn: $i * $stagger + $animTime/5;
+              $delayOut: calc(($numOfParts - $i) * $stagger);
+              $delayIn: calc($i * $stagger + $animTime / 5);
 
               z-index: $numOfParts - $i;
               transition-delay: $delayOut;
-              transform: translateX(percentage($i / $numOfParts * -1.3));
+              transform: translateX(percentage(calc($i / $numOfParts) * -1.3));
 
               @include slideActive {
                 transition-delay: $delayIn;
               }
 
               &:before {
-                left: $partW * ($i - 1) * -1;
-                transition-delay: $delayOut + $imageFadeAT/2;
+                left: calc($partW * ($i - 1) * -1);
+                transition-delay: calc($delayOut + $imageFadeAT / 2);
 
                 @include slideActive {
                   transition-delay: $delayIn;
@@ -279,10 +279,10 @@
       top: 50%;
       width: $size;
       height: $size;
-      margin-top: $size/-2;
+      margin-top: calc($size / -2);
       border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      transform: translateX($size*-1);
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateX(calc($size * -1));
       opacity: 0;
       transition: $sliderReadyTrans;
       cursor: pointer;
@@ -338,33 +338,19 @@
   }
 
   .slider__slide-content {
-    padding: 0 20px; /* Add left and right padding */
-    text-align: center; /* Center align text */
+    padding: 0 20px;
+    text-align: center;
   }
 
   .slider__slide-subheading {
-    margin-bottom: 10px; /* Space between subheading and heading */
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    line-height: 1.4;
   }
 
   .slider__slide-heading {
-    white-space: normal; /* Allow text to wrap */
-    overflow-wrap: break-word; /* Break long words */
-  }
-
-  .slider__slide-content {
-    padding: 0 20px; /* Keep left and right padding */
-    text-align: center; /* Center align text */
-  }
-
-  .slider__slide-subheading {
-    margin-bottom: 10px; /* Space between subheading and heading */
-    letter-spacing: -0.5px; /* Reduce space between letters */
-    line-height: 1.4; /* Adjust line height for better readability */
-  }
-
-  .slider__slide-heading {
-    white-space: normal; /* Allow text to wrap */
-    overflow-wrap: break-word; /* Break long words */
-    letter-spacing: -0.5px; /* Reduce space between letters */
-    line-height: 1.2; /* Adjust line height for better readability */
+    white-space: normal;
+    overflow-wrap: break-word;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
   }
