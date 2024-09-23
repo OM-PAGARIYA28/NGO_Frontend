@@ -4,6 +4,7 @@ import Carousel from '../components/Carousel';
 import CampaignTabs from '../components/CampaignTabs';
 import Hero from '../components/Hero';
 import NumbersSection from '../components/NumbersSection';
+import Footer from '../components/Footer';
 
 const slides = [
     {
@@ -48,6 +49,7 @@ const Home = () => {
         />
       <NumbersSection />
       <CampaignTabs />
+      <Footer />
     </>
   );
 };
