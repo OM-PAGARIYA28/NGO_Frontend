@@ -5,6 +5,7 @@ import CampaignTabs from '../components/CampaignTabs';
 import Hero from '../components/Hero';
 import NumbersSection from '../components/NumbersSection';
 import Footer from '../components/Footer';
+import UpcomingCampaigns from '../components/UpcomingCampaigns';
 
 const slides = [
     {
@@ -49,6 +50,7 @@ const Home = () => {
         />
       <NumbersSection />
       <CampaignTabs />
+      <UpcomingCampaigns />
       <Footer />
     </>
   );

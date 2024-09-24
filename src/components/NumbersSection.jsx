@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const NumbersSection = () => {
   const [stats, setStats] = useState({
@@ -8,28 +8,69 @@ const NumbersSection = () => {
     listings: 0
   });
 
+  const sectionRef = useRef(null);
+  
+  const [hasAnimated, setHasAnimated] = useState(false);
+
   useEffect(() => {
-    // Faster animation settings
-    let visitorsTimer = setInterval(() => setStats(prev => ({ ...prev, visitors: Math.min(prev.visitors + 30, 15) })), 25);
-    let customersTimer = setInterval(() => setStats(prev => ({ ...prev, customers: Math.min(prev.customers + 30, 2000) })), 25);
-    let awardsTimer = setInterval(() => setStats(prev => ({ ...prev, awards: Math.min(prev.awards + 150, 4000) })), 25);
-    let listingsTimer = setInterval(() => setStats(prev => ({ ...prev, listings: Math.min(prev.listings + 15, 25) })), 25);
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting && !hasAnimated) {
+        startAnimation();
+        setHasAnimated(true);
+      }
+    }, {
+      threshold: 0.5
+    });
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      clearInterval(visitorsTimer);
-      clearInterval(customersTimer);
-      clearInterval(awardsTimer);
-      clearInterval(listingsTimer);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
-  }, []);
+  }, [hasAnimated]);
+
+  const startAnimation = () => {
+    const duration = 1000;
+    const updateInterval = 25;
+
+    const targetStats = {
+      visitors: 15,
+      customers: 2000,
+      awards: 4000,
+      listings: 25
+    };
+
+    Object.keys(targetStats).forEach((key) => {
+      const increment = targetStats[key] / (duration / updateInterval);
+      let currentStat = 0;
+
+      const timer = setInterval(() => {
+        currentStat += increment;
+
+        if (currentStat >= targetStats[key]) {
+          setStats(prev => ({ ...prev, [key]: targetStats[key] }));
+          clearInterval(timer);
+        } else {
+          setStats(prev => ({ ...prev, [key]: Math.round(currentStat) }));
+        }
+      }, updateInterval);
+    });
+  };
 
   return (
-    <div className="bg-gradient-to-r from-blue-100 to-blue-300 text-white py-12 rounded-lg shadow-lg">
+    <div ref={sectionRef} className="bg-gradient-to-r from-blue-100 to-blue-300 py-12 rounded-lg shadow-lg">
       <div className="flex justify-between items-center mx-8">
         {Object.entries(stats).map(([key, value], index) => (
           <div className="text-center flex-1 p-4" key={index}>
-            <div className="font-extrabold text-5xl text-blue-900 animate-pulse transition-transform duration-500 hover:scale-105">{value}</div>
-            <div className="text-lg text-blue-800 capitalize">{getLabel(key)}</div>
+            <div className="font-extrabold text-5xl text-blue-900 transition-transform duration-500 hover:scale-105">
+              {value}
+            </div>
+            <div className="text-lg text-blue-800 capitalize mt-2">{getLabel(key)}</div>
             <div className="w-16 h-1 bg-blue-500 mx-auto mt-2"></div>
           </div>
         ))}
