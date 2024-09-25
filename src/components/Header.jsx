@@ -9,6 +9,7 @@ const Header = () => {
           <a href="/" className="hover:text-gray-200">Home</a>
           <a href="/about" className="hover:text-gray-200">About</a>
           <a href="/projects" className="hover:text-gray-200">Projects</a>
+          <a href="/Campaigns" className="hover:text-gray-200">Campaigns</a>
           <a href="/contact" className="hover:text-gray-200">Contact</a>
         </nav>
         <div className="space-x-2">
