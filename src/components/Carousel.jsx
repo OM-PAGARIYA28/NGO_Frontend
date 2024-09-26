@@ -55,7 +55,6 @@ class CitiesSlider extends React.Component {
                     <span key={i} style={{ whiteSpace: l === ' ' ? 'pre' : 'normal' }}>{l}</span>
                   )}
                 </h2>
-                <p className="slider__slide-readmore">read more</p>
               </div>
               <div className="slider__slide-parts">
                 {[...Array(this.IMAGE_PARTS)].map((_, i) => (
