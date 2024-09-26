@@ -318,6 +318,20 @@
         opacity: 1;
       }
     }
+
+    @media (max-width: 768px) {
+        &__slide-content {
+          padding: 10px;
+
+          .slider__slide-subheading {
+            font-size: 1em;
+          }
+
+          .slider__slide-heading {
+            font-size: 1.5em;
+          }
+        }
+      }
   }
 
   .icon-link {

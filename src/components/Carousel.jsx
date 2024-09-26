@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Carousel.scss';
 
-class CitiesSlider extends React.Component {
+class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.IMAGE_PARTS = 4;
@@ -91,6 +91,7 @@ const slides = [
   },
 ];
 
+export { slides };
 export default function App() {
-  return <CitiesSlider slides={slides} />;
+  return <Carousel slides={slides} />;
 }
