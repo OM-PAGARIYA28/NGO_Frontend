@@ -1,27 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 
 const CampaignTabs = () => {
-  const campaigns = {
-    empowerment: {
-      title: "Women Empowerment",
-      description: "Women empowerment is not just about women; it is also about creating stronger families, communities, and nations. When women thrive, everyone benefits.",
-      amount: 100000,
-      image: "/WomenEmpowerment.png"
-    },
-    education: {
-      title: "Child Education",
-      description: "Child education encompasses more than academics. It nurtures a child's physical, emotional, social, and cognitive development, preparing them for future success and well-being.",
-      amount: 150000,
-      image: "https://hdfindia.org/admin/uploads/campaigns/pexels-photo-6647037.jpeg"
-    },
-    foodDonation: {
-      title: "Food Donation",
-      description: "Every donation counts! Join our food drive and help feed our neighbors.",
-      amount: 120000,
-      image: "https://hdfindia.org/admin/uploads/campaigns/image_08.jpg"
-    }
-  };
+  const [campaigns, setCampaigns] = useState([]); // Use array instead of object
+
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      try {
+        // Fetching campaigns from your backend API
+        const response = await fetch('https://ngo-backend-om-pagariyas-projects.vercel.app/admin/campaign/getallcampaign');
+        const data = await response.json();// Log the API response for debugging
+        setCampaigns(data); // Set the campaigns data as an array
+      } catch (error) {
+        console.error('Error fetching campaigns:', error); // Handle errors
+      }
+    };
+
+    fetchCampaigns(); // Call the function when component mounts
+  }, []); // Empty dependency array ensures this only runs once
 
   return (
     <div className="container mx-auto py-8 mt-12">
@@ -30,16 +26,19 @@ const CampaignTabs = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.keys(campaigns).map((key) => (
-          <div className="m-4" key={key}> {/* Added margin here */}
+        {campaigns.length > 0 ? (
+          campaigns.map((campaign) => (
             <Card
-              title={campaigns[key].title}
-              description={campaigns[key].description}
-              amount={campaigns[key].amount}
-              image={campaigns[key].image}
+              key={campaign.id}
+              title={campaign.title.trim()} // Trimming any extra white spaces
+              description={campaign.description.trim()}
+              amount={campaign.amountToBeRaised}
+              image={campaign.photo}
             />
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-center col-span-3">Loading campaigns...</p> // Display while data is loading
+        )}
       </div>
 
       {/* See All Campaigns button */}
