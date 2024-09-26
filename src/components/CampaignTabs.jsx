@@ -5,13 +5,13 @@ const CampaignTabs = () => {
   const campaigns = {
     empowerment: {
       title: "Women Empowerment",
-      description: "Women empowerment is not just about women; it is about creating stronger families, communities, and nations. When women thrive, everyone benefits.",
+      description: "Women empowerment is not just about women; it is also about creating stronger families, communities, and nations. When women thrive, everyone benefits.",
       amount: 100000,
-      image: "https://hdfindia.org/admin/uploads/campaigns/gal-4.png"
+      image: "/WomenEmpowerment.png"
     },
     education: {
       title: "Child Education",
-      description: "Child education encompasses more than academics. It nurtures a childs physical, emotional, social, and cognitive development, preparing them for future success and well-being.",
+      description: "Child education encompasses more than academics. It nurtures a child's physical, emotional, social, and cognitive development, preparing them for future success and well-being.",
       amount: 150000,
       image: "https://hdfindia.org/admin/uploads/campaigns/pexels-photo-6647037.jpeg"
     },
@@ -31,13 +31,14 @@ const CampaignTabs = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.keys(campaigns).map((key) => (
-          <Card
-            key={key}
-            title={campaigns[key].title}
-            description={campaigns[key].description}
-            amount={campaigns[key].amount}
-            image={campaigns[key].image}
-          />
+          <div className="m-4" key={key}> {/* Added margin here */}
+            <Card
+              title={campaigns[key].title}
+              description={campaigns[key].description}
+              amount={campaigns[key].amount}
+              image={campaigns[key].image}
+            />
+          </div>
         ))}
       </div>
 

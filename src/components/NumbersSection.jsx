@@ -9,7 +9,7 @@ const NumbersSection = () => {
   });
 
   const sectionRef = useRef(null);
-  
+
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {

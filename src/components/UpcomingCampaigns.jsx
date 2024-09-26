@@ -16,12 +16,14 @@ const UpcomingCampaigns = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card
-          title={upcomingCampaign.title}
-          description={upcomingCampaign.description}
-          amount={upcomingCampaign.amount}
-          image={upcomingCampaign.image}
-        />
+        <div className="m-4"> {/* Added margin here */}
+          <Card
+            title={upcomingCampaign.title}
+            description={upcomingCampaign.description}
+            amount={upcomingCampaign.amount}
+            image={upcomingCampaign.image}
+          />
+        </div>
       </div>
     </div>
   );

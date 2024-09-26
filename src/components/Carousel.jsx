@@ -42,7 +42,6 @@ class CitiesSlider extends React.Component {
     const { activeSlide, prevSlide, sliderReady } = this.state;
     return (
       <div className={`slider ${sliderReady ? 's--ready' : ''}`}>
-        <p className="slider__top-heading">Our Initiatives</p>
         <div className="slider__slides">
           {this.props.slides.map((slide, index) => (
             <div
