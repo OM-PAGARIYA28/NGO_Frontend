@@ -42,7 +42,6 @@ class CitiesSlider extends React.Component {
     const { activeSlide, prevSlide, sliderReady } = this.state;
     return (
       <div className={`slider ${sliderReady ? 's--ready' : ''}`}>
-        <p className="slider__top-heading">Our Initiatives</p>
         <div className="slider__slides">
           {this.props.slides.map((slide, index) => (
             <div
@@ -56,7 +55,6 @@ class CitiesSlider extends React.Component {
                     <span key={i} style={{ whiteSpace: l === ' ' ? 'pre' : 'normal' }}>{l}</span>
                   )}
                 </h2>
-                <p className="slider__slide-readmore">read more</p>
               </div>
               <div className="slider__slide-parts">
                 {[...Array(this.IMAGE_PARTS)].map((_, i) => (
