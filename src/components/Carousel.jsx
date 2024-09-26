@@ -38,6 +38,10 @@ class Carousel extends React.Component {
     this.setState({ activeSlide, prevSlide });
   }
 
+  goToSlide(index) {
+    this.setState({ activeSlide: index, prevSlide: this.state.activeSlide });
+  }
+
   render() {
     const { activeSlide, prevSlide, sliderReady } = this.state;
     return (
@@ -66,8 +70,15 @@ class Carousel extends React.Component {
             </div>
           ))}
         </div>
-        <div className="slider__control" onClick={() => this.changeSlides(-1)} />
-        <div className="slider__control slider__control--right" onClick={() => this.changeSlides(1)} />
+        <div className="slider__dots">
+          {this.props.slides.map((_, index) => (
+            <div
+              key={index}
+              className={`slider__dot ${activeSlide === index ? 'active' : ''}`}
+              onClick={() => this.goToSlide(index)}
+            />
+          ))}
+        </div>
       </div>
     );
   }
