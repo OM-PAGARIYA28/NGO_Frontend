@@ -9,8 +9,7 @@ const CampaignTabs = () => {
       try {
         // Fetching campaigns from your backend API
         const response = await fetch('https://ngo-backend-om-pagariyas-projects.vercel.app/admin/campaign/getallcampaign');
-        const data = await response.json();
-        console.log('Fetched Campaigns:', data); // Log the API response for debugging
+        const data = await response.json();// Log the API response for debugging
         setCampaigns(data); // Set the campaigns data as an array
       } catch (error) {
         console.error('Error fetching campaigns:', error); // Handle errors
