@@ -62,17 +62,26 @@ const NumbersSection = () => {
   };
 
   return (
-    <div ref={sectionRef} className="bg-gradient-to-r from-blue-100 to-blue-300 py-12 rounded-lg shadow-lg">
-      <div className="flex flex-wrap justify-center items-center mx-4 md:mx-8">
-        {Object.entries(stats).map(([key, value], index) => (
-          <div className="text-center flex-1 p-4 max-w-xs md:max-w-none" key={index}>
-            <div className="font-extrabold text-4xl md:text-5xl text-blue-900 transition-transform duration-500 hover:scale-105">
-              {value}
+    <div className="container mx-auto py-8 mt-12 px-4 md:px-8">
+      {/* Title section above the blue box */}
+      <div className="mb-8 text-center">
+        <h1 className="text-5xl font-bold text-black">Our Work</h1> {/* Title */}
+        <div className="w-full h-1 bg-orange-500 mx-auto mt-2"></div> {/* Orange underline */}
+      </div>
+
+      {/* Statistics section inside the blue box */}
+      <div ref={sectionRef} className="bg-gradient-to-r from-blue-100 to-blue-300 py-12 rounded-lg shadow-lg">
+        <div className="flex flex-wrap justify-center items-center mx-4 md:mx-8">
+          {Object.entries(stats).map(([key, value], index) => (
+            <div className="text-center flex-1 p-4 max-w-xs md:max-w-none" key={index}>
+              <div className="font-extrabold text-4xl md:text-5xl text-blue-900 transition-transform duration-500 hover:scale-105">
+                {value}
+              </div>
+              <div className="text-lg text-blue-800 capitalize mt-2">{getLabel(key)}</div>
+              <div className="w-16 h-1 bg-blue-500 mx-auto mt-2"></div>
             </div>
-            <div className="text-lg text-blue-800 capitalize mt-2">{getLabel(key)}</div>
-            <div className="w-16 h-1 bg-blue-500 mx-auto mt-2"></div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
