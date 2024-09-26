@@ -9,7 +9,6 @@ const NumbersSection = () => {
   });
 
   const sectionRef = useRef(null);
-
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -64,10 +63,10 @@ const NumbersSection = () => {
 
   return (
     <div ref={sectionRef} className="bg-gradient-to-r from-blue-100 to-blue-300 py-12 rounded-lg shadow-lg">
-      <div className="flex justify-between items-center mx-8">
+      <div className="flex flex-wrap justify-center items-center mx-4 md:mx-8">
         {Object.entries(stats).map(([key, value], index) => (
-          <div className="text-center flex-1 p-4" key={index}>
-            <div className="font-extrabold text-5xl text-blue-900 transition-transform duration-500 hover:scale-105">
+          <div className="text-center flex-1 p-4 max-w-xs md:max-w-none" key={index}>
+            <div className="font-extrabold text-4xl md:text-5xl text-blue-900 transition-transform duration-500 hover:scale-105">
               {value}
             </div>
             <div className="text-lg text-blue-800 capitalize mt-2">{getLabel(key)}</div>
