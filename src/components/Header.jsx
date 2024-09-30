@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom'; // Added useLocation
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -15,6 +16,22 @@ import {
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const location = useLocation(); // Hook to track the current route
+
+  // Update active tab based on the current URL
+  useEffect(() => {
+    const pathToTabName = {
+      "/": "Home",
+      "/about": "About",
+      "/campaigns": "Campaigns",
+      "/gallery": "Gallery",
+      "/contact": "Contact",
+    };
+
+    const tabName = pathToTabName[location.pathname] || "Home";
+    setActiveTab(tabName);
+  }, [location.pathname]); // Run when location changes
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -41,11 +58,11 @@ const Header = () => {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex space-x-6">
-          <NavItem name="Home" icon={faHome} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem name="About" icon={faInfoCircle} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem name="Campaigns" icon={faHandsHelping} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem name="Gallery" icon={faImages} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem name="Contact" icon={faPhoneAlt} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="Home" icon={faHome} path="/" activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="About" icon={faInfoCircle} path="/about" activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="Campaigns" icon={faHandsHelping} path="/campaigns" activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="Gallery" icon={faImages} path="/gallery" activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="Contact" icon={faPhoneAlt} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
         </nav>
 
         {/* Donation and Volunteer Buttons */}
@@ -68,11 +85,11 @@ const Header = () => {
             </button>
           </div>
           <nav className="flex flex-col space-y-4 p-4">
-            <NavItem name="Home" icon={faHome} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <NavItem name="About" icon={faInfoCircle} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <NavItem name="Campaigns" icon={faHandsHelping} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <NavItem name="Gallery" icon={faImages} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <NavItem name="Contact" icon={faPhoneAlt} activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="Home" icon={faHome} path="/" activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="About" icon={faInfoCircle} path="/about" activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="Campaigns" icon={faHandsHelping} path="/campaigns" activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="Gallery" icon={faImages} path="/gallery" activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="Contact" icon={faPhoneAlt} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
           </nav>
 
           {/* Donation and Volunteer Buttons in Sidebar */}
@@ -90,24 +107,26 @@ const Header = () => {
   );
 };
 
-const NavItem = ({ name, icon, activeTab, setActiveTab }) => {
+const NavItem = ({ name, icon, path, activeTab, setActiveTab }) => {
   const isActive = activeTab === name;
   return (
-    <div
-      className={`flex items-center space-x-2 cursor-pointer transition duration-200 ${
-        isActive ? "text-blue-500" : "text-gray-400 hover:text-white"
-      }`}
-      onClick={() => setActiveTab(name)}
-    >
+    <Link to={path}>
       <div
-        className={`p-2 rounded-full ${
-          isActive ? "bg-blue-500 text-white" : "bg-transparent"
-        } transition duration-300`}
+        className={`flex items-center space-x-2 cursor-pointer transition duration-200 ${
+          isActive ? "text-blue-500" : "text-gray-400 hover:text-white"
+        }`}
+        onClick={() => setActiveTab(name)}
       >
-        <FontAwesomeIcon icon={icon} />
+        <div
+          className={`p-2 rounded-full ${
+            isActive ? "bg-blue-500 text-white" : "bg-transparent"
+          } transition duration-300`}
+        >
+          <FontAwesomeIcon icon={icon} />
+        </div>
+        <span className="font-medium">{name}</span>
       </div>
-      <span className="font-medium">{name}</span>
-    </div>
+    </Link>
   );
 };
 

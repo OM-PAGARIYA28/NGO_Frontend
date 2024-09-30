@@ -29,8 +29,8 @@ const Hero = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-12 lg:gap-10 pt-20 lg:pt-32 pb-20 lg:pb-14 container mx-auto">
       <div className="flex flex-col justify-start items-start gap-6 lg:gap-8 lg:max-w-2xl text-left px-4">
-        
-        
+
+
         {/* Title with Conditional Underline */}
         <h1 className="text-4xl lg:text-5xl font-extrabold tracking-wider lg:tracking-wide text-left relative">
           {aboutUsData.title}
@@ -43,8 +43,8 @@ const Hero = () => {
           {aboutUsData.description}
         </p>
       </div>
-      
-      <div className="flex justify-center items-center relative">
+
+      <div className="flex justify-center items-center relative ">
         <img
           src={aboutUsData.imageUrl}
           alt={aboutUsData.title}
