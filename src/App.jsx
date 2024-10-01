@@ -1,12 +1,25 @@
 import React from 'react';
-import Home from './pages/Home'
-import './index.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home'; // Home page
+import About from './pages/About'; // Import About page
+import Campaigns from './pages/Campaigns'; // Import Campaigns page
+import Gallery from './pages/Gallery'; // Import Gallery page
+import Contact from './pages/Contact'; // Import Contact page
+import './index.css'; // Import global styles
 
 const App = () => {
   return (
-    <div className="min-h-screen">
-      <Home />
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<Home />} /> {/* Home Page */}
+          <Route path="/about" element={<About />} /> {/* About Page */}
+          <Route path="/campaigns" element={<Campaigns />} /> {/* Campaigns Page */}
+          <Route path="/gallery" element={<Gallery />} /> {/* Gallery Page */}
+          <Route path="/contact" element={<Contact />} /> {/* Contact Page */}
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
