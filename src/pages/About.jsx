@@ -16,7 +16,7 @@ const Section = ({ title, description, imgSrc, imgAlt, imgFirst }) => {
         </div>
         <div className="md:w-1/2 md:pl-6">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">{title}</h2>
-          <p className="text-lg text-gray-600 mb-4 leading-relaxed">{description}</p>
+          <p className="text-lg text-gray-600 mb-4 leading-relaxed mr-2">{description}</p>
         </div>
       </div>
     </section>
