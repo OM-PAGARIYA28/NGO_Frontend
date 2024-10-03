@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from 'react-router-dom'; // Added useLocation
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -17,7 +17,7 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const location = useLocation(); // Hook to track the current route
+  const location = useLocation();
 
   // Update active tab based on the current URL
   useEffect(() => {
@@ -27,11 +27,13 @@ const Header = () => {
       "/campaigns": "Campaigns",
       "/gallery": "Gallery",
       "/contact": "Contact",
+      "/donation": "Donation",  // Update for Donation path
+      "/volunteer": "Volunteer", // Update for Volunteer path
     };
 
     const tabName = pathToTabName[location.pathname] || "Home";
     setActiveTab(tabName);
-  }, [location.pathname]); // Run when location changes
+  }, [location.pathname]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -67,12 +69,16 @@ const Header = () => {
 
         {/* Donation and Volunteer Buttons */}
         <div className="hidden lg:flex space-x-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
-            <FontAwesomeIcon icon={faDonate} /> Donate
-          </button>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
-            <FontAwesomeIcon icon={faHandPaper} /> Volunteer
-          </button>
+          <Link to="/donation">
+            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
+              <FontAwesomeIcon icon={faDonate} /> Donate
+            </button>
+          </Link>
+          <Link to="/volunteer">
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
+              <FontAwesomeIcon icon={faHandPaper} /> Volunteer
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -94,12 +100,16 @@ const Header = () => {
 
           {/* Donation and Volunteer Buttons in Sidebar */}
           <div className="flex flex-col items-center p-4">
-            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300 mb-2">
-              <FontAwesomeIcon icon={faDonate} /> Donate
-            </button>
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
-              <FontAwesomeIcon icon={faHandPaper} /> Volunteer
-            </button>
+            <Link to="/donation">
+              <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300 mb-2">
+                <FontAwesomeIcon icon={faDonate} /> Donate
+              </button>
+            </Link>
+            <Link to="/volunteer">
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-full shadow-lg transition duration-300">
+                <FontAwesomeIcon icon={faHandPaper} /> Volunteer
+              </button>
+            </Link>
           </div>
         </div>
       </div>
