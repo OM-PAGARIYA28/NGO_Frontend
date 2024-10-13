@@ -7,6 +7,7 @@ import Gallery from './pages/Gallery'; // Import Gallery page
 import Contact from './pages/Contact'; // Import Contact page
 import Donation from './pages/Donation'; // Import Donation page
 import Volunteer from './pages/Volunteer'; // Import Volunteer page
+import Admin from './pages/Admin'; // Import Admin page
 import './index.css'; // Import global styles
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} /> {/* Contact Page */}
           <Route path="/donation" element={<Donation />} /> {/* Donation Page */}
           <Route path="/volunteer" element={<Volunteer />} /> {/* Volunteer Page */}
+          <Route path="/admin" element={<Admin />} /> {/* Admin Page */}
         </Routes>
       </div>
     </Router>
