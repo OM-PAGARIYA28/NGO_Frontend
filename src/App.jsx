@@ -13,6 +13,8 @@ import Dashboard from './components/Admin/Dashboard';
 import CampaignManager from './components/Admin/CampaignManager';
 import UpcomingCampaignManager from './components/Admin/UpcomingCampaignManager';
 import AdminLayout from './components/Admin/AdminLayout'; // Layout for admin pages
+import Messages from './components/Admin/Messages';
+import AboutUsManager from './components/Admin/AboutUsManager';
 
 const App = () => {
   return (
@@ -32,10 +34,14 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             {/* Admin layout applies to all routes under this */}
             <Route element={<AdminLayout />}>
-                <Route path="/admin" element={<Dashboard />} />
-                <Route path="/dashboard" element={<Dashboard />} /> {/* Dashboard Route */}
-                <Route path="/campaigns/manage" element={<CampaignManager />} /> {/* Campaign Manager */}
-                <Route path="/works/manage" element={<UpcomingCampaignManager />} /> {/* Upcoming Campaigns */}
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} /> {/* Dashboard Route */}
+              <Route path="/campaigns/manage" element={<CampaignManager />} /> {/* Campaign Manager */}
+              <Route path="/works/manage" element={<UpcomingCampaignManager />} /> {/* Upcoming Campaigns */}
+              <Route path="/messages" element={<Messages />} /> {/* Messages */}
+
+              {/* Add routes for editing About, Mission, Vision, and Impact */}
+              <Route path="/aboutus/:id" element={<AboutUsManager />} /> {/* Edit Section */}
             </Route>
           </Route>
         </Routes>

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faTachometerAlt, faEnvelope, faHandHoldingHeart, faFileAlt, faUsers, faHome, faInfoCircle, faImage, faProjectDiagram, faCog, faSignOutAlt
+  faTachometerAlt, faEnvelope, faHandHoldingHeart, faFileAlt, faUsers,
+  faHome, faInfoCircle, faImage, faProjectDiagram, faCog, faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 const SidebarItem = ({ title, icon, children, link, isActive }) => {
@@ -59,41 +60,38 @@ const Sidebar = () => {
         {/* NGO Services */}
         <div className="text-gray-400 uppercase py-2 px-4">NGO Services</div>
         <SidebarItem title="Donations" icon={faHandHoldingHeart} isActive={location.pathname.startsWith('/donations')}>
-          <SidebarItem title="View Donations" link="/donations/view" isActive={location.pathname === '/donations/view'} />
+          <SidebarItem title="View Donations" link="/donations/view" icon={faHandHoldingHeart} isActive={location.pathname === '/donations/view'} />
         </SidebarItem>
         <SidebarItem title="Internship" icon={faFileAlt} isActive={location.pathname.startsWith('/internship')}>
-          <SidebarItem title="Internship Application" link="/internship/applications" isActive={location.pathname === '/internship/applications'} />
-          <SidebarItem title="Add Internship Types" link="/internship/types" isActive={location.pathname === '/internship/types'} />
+          <SidebarItem title="Internship Application" link="/internship/applications" icon={faFileAlt} isActive={location.pathname === '/internship/applications'} />
+          <SidebarItem title="Add Internship Types" link="/internship/types" icon={faFileAlt} isActive={location.pathname === '/internship/types'} />
         </SidebarItem>
         <SidebarItem title="Campaigns" icon={faUsers} isActive={location.pathname.startsWith('/campaigns')}>
-          <SidebarItem title="Manage Campaigns" link="/campaigns/manage" isActive={location.pathname === '/campaigns/manage'} />
+          <SidebarItem title="Manage Campaigns" link="/campaigns/manage" icon={faUsers} isActive={location.pathname === '/campaigns/manage'} />
         </SidebarItem>
 
         {/* Website Edits */}
         <div className="text-gray-400 uppercase py-2 px-4">Website Edits</div>
-        <SidebarItem title="Home Screen" icon={faHome} isActive={location.pathname.startsWith('/home')}>
-          <SidebarItem title="Sidebar" link="/home/sidebar" isActive={location.pathname === '/home/sidebar'} />
-        </SidebarItem>
-        <SidebarItem title="About Us" icon={faInfoCircle} isActive={location.pathname.startsWith('/about')}>
-          <SidebarItem title="About" link="/about" isActive={location.pathname === '/about'} />
-          <SidebarItem title="Mission" link="/mission" isActive={location.pathname === '/mission'} />
-          <SidebarItem title="Vision" link="/vision" isActive={location.pathname === '/vision'} />
-          <SidebarItem title="Impact" link="/impact" isActive={location.pathname === '/impact'} />
-          <SidebarItem title="Contact Information" link="/contact" isActive={location.pathname === '/contact'} />
-          <SidebarItem title="Manage FAQs" link="/faqs/manage" isActive={location.pathname === '/faqs/manage'} />
+        <SidebarItem title="About" icon={faInfoCircle} isActive={location.pathname.startsWith('/aboutus')}>
+          <SidebarItem title="About Us" link="/aboutus/5" icon={faInfoCircle} isActive={location.pathname === '/aboutus/5'} />
+          <SidebarItem title="Mission" link="/aboutus/2" icon={faInfoCircle} isActive={location.pathname === '/aboutus/2'} />
+          <SidebarItem title="Vision" link="/aboutus/3" icon={faInfoCircle} isActive={location.pathname === '/aboutus/3'} />
+          <SidebarItem title="Impact" link="/aboutus/4" icon={faInfoCircle} isActive={location.pathname === '/aboutus/4'} />
+          <SidebarItem title="Contact Information" link="/contact" icon={faInfoCircle} isActive={location.pathname === '/contact'} />
+          <SidebarItem title="Manage FAQs" link="/faqs/manage" icon={faInfoCircle} isActive={location.pathname === '/faqs/manage'} />
         </SidebarItem>
         <SidebarItem title="Gallery" icon={faImage} isActive={location.pathname.startsWith('/gallery')}>
-          <SidebarItem title="Manage" link="/gallery/manage" isActive={location.pathname === '/gallery/manage'} />
-          <SidebarItem title="Edit Tiles" link="/gallery/edit" isActive={location.pathname === '/gallery/edit'} />
+          <SidebarItem title="Manage" link="/gallery/manage" icon={faImage} isActive={location.pathname === '/gallery/manage'} />
+          <SidebarItem title="Edit Tiles" link="/gallery/edit" icon={faImage} isActive={location.pathname === '/gallery/edit'} />
         </SidebarItem>
         <SidebarItem title="Upcoming Works" icon={faProjectDiagram} isActive={location.pathname.startsWith('/works')}>
-          <SidebarItem title="Manage" link="/works/manage" isActive={location.pathname === '/works/manage'} />
+          <SidebarItem title="Manage" link="/works/manage" icon={faProjectDiagram} isActive={location.pathname === '/works/manage'} />
         </SidebarItem>
 
         {/* Account */}
         <div className="text-gray-400 uppercase py-2 px-4">Account</div>
         <SidebarItem title="Account" icon={faCog} isActive={location.pathname.startsWith('/account')}>
-          <SidebarItem title="Settings" link="/account/settings" isActive={location.pathname === '/account/settings'} />
+          <SidebarItem title="Settings" link="/account/settings" icon={faCog} isActive={location.pathname === '/account/settings'} />
           <div onClick={handleLogout} className="flex items-center text-white py-2 px-4 hover:bg-blue-500 cursor-pointer rounded">
             <FontAwesomeIcon icon={faSignOutAlt} className="mr-3" />
             <span>Logout</span>
