@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTachometerAlt, faEnvelope, faHandHoldingHeart, faFileAlt, faUsers, faHome, faInfoCircle, faImage, faProjectDiagram, faCog, faSignOutAlt
-} from '@fortawesome/free-solid-svg-icons'; // Import icons
+} from '@fortawesome/free-solid-svg-icons';
 
-const SidebarItem = ({ title, icon, children, link }) => {
+const SidebarItem = ({ title, icon, children, link, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -36,6 +36,16 @@ const SidebarItem = ({ title, icon, children, link }) => {
 };
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear the token from local storage
+    localStorage.removeItem('jwt_token');
+
+    // Navigate to the login page
+    navigate('/admin/login'); // Adjust this path according to your login route
+  };
+
   return (
     <div className="w-64 bg-[#2A6FF1] h-screen p-6 overflow-y-auto">
       <div className="text-white text-2xl font-bold mb-10">NGO Admin</div>
@@ -84,7 +94,10 @@ const Sidebar = () => {
       <div className="text-gray-400 uppercase py-2 px-4">Account</div>
       <SidebarItem title="Account" icon={faCog}>
         <SidebarItem title="Settings" link="/account/settings" />
-        <SidebarItem title="Logout" link="/logout" icon={faSignOutAlt} />
+        <div onClick={handleLogout} className="flex items-center text-white py-2 px-4 hover:bg-blue-500 cursor-pointer rounded">
+          <FontAwesomeIcon icon={faSignOutAlt} className="mr-3" />
+          <span>Logout</span>
+        </div>
       </SidebarItem>
     </div>
   );
