@@ -12,6 +12,7 @@ import './index.css'; // Import global styles
 import CampaignManager from './components/Admin/CampaignManager';
 import AdminLogin from './pages/AdminLogin';
 import PrivateRoute from './components/PrivateRoute';
+import UpcomingCampaignManager from './components/Admin/UpcomingCampaignManage';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/admin" element={<Admin />} /> {/* Admin Page */}
             <Route path="/dashboard" element={<div>Dashboard Content</div>} />
             <Route path="/campaigns/manage" element={<CampaignManager />} />
+            <Route path="/works/manage" element={<UpcomingCampaignManager />} />
             <Route path="/admin/login" element={<AdminLogin />} />
         
         {/* Protect the /admin route */}

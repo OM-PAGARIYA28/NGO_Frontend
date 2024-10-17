@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = "https://ngo-backend-om-pagariyas-projects.vercel.app/admin/campaign";
+const API_BASE_URL = "https://ngo-backend-om-pagariyas-projects.vercel.app/upcomingwork";
 
-const CampaignManager = () => {
+const UpcomingCampaignManager = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState({
     title: '',
@@ -23,7 +23,7 @@ const CampaignManager = () => {
   const fetchCampaigns = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/getallcampaign`, {
+      const response = await axios.get(`${API_BASE_URL}/getallupcomingcampaign`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -267,4 +267,4 @@ const CampaignManager = () => {
   );
 };
 
-export default CampaignManager;
+export default UpcomingCampaignManager;
