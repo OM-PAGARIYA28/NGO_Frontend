@@ -149,7 +149,7 @@ const UpcomingCampaignManager = () => {
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold text-blue-600">Campaign Manager</h1>
+        <h1 className="text-4xl font-bold text-blue-600">Upcoming Campaigns Manager</h1>
         <button
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 transition"
           onClick={() => {
