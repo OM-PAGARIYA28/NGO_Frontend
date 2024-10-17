@@ -30,23 +30,27 @@ const Admin = () => {
       const token = localStorage.getItem('jwt_token'); 
 
       if (!token) {
-        navigate('/admin/login'); 
+        alert('Session expired or not logged in. Please log in again.');
+        navigate('/admin/login');
         return;
       }
 
       const decoded = decodeToken(token); 
+      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
 
-      if (!decoded || decoded.role !== 'ADMIN') {
-        navigate('/admin/login'); 
+      if (!decoded || decoded.exp < currentTime || decoded.role !== 'ADMIN') {
+        alert('Invalid or expired session. Please log in again.');
+        localStorage.removeItem('jwt_token'); // Clear invalid token
+        navigate('/admin/login');
       } else {
-        setLoading(false); 
+        setLoading(false); // Proceed if token is valid
       }
     };
 
-    verifyAdmin();
+    verifyAdmin(); // Call the function on mount
   }, [navigate]);
 
-  if (loading) return <p>Loading...</p>; 
+  if (loading) return <p>Loading...</p>; // Display loading message while verifying
 
   return (
     <>

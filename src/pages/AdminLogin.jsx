@@ -22,6 +22,7 @@ const AdminLogin = () => {
       if (response.ok) {
         const { accessToken } = await response.json();
         localStorage.setItem('jwt_token', accessToken);
+        + localStorage.setItem('token', accessToken);
         navigate('/admin');
       } else {
         alert('Invalid credentials');
