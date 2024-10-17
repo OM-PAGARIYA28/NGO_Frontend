@@ -1,8 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const contactData = {
+      name,
+      email,
+      subject,
+      message,
+    };
+
+    try {
+      const response = await fetch('https://ngo-backend-om-pagariyas-projects.vercel.app/contactform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+      setSuccess('Message sent successfully!'); // Set success message
+      setError(null); // Clear error message
+
+      // Reset form fields
+      setName('');
+      setEmail('');
+      setSubject('');
+      setMessage('');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setError('Failed to send message. Please try again.'); // Set error message
+      setSuccess(null); // Clear success message
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -51,11 +98,13 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <input
                   type="text"
                   placeholder="Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
@@ -64,6 +113,8 @@ const Contact = () => {
                 <input
                   type="email"
                   placeholder="Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
@@ -72,6 +123,8 @@ const Contact = () => {
                 <input
                   type="text"
                   placeholder="Subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
@@ -79,6 +132,8 @@ const Contact = () => {
               <div>
                 <textarea
                   placeholder="Message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
                   required
                 ></textarea>
@@ -91,6 +146,10 @@ const Contact = () => {
                   Send Message
                 </button>
               </div>
+
+              {/* Display success or error message */}
+              {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
+              {success && <p className="mt-4 text-green-500 text-center">{success}</p>}
             </form>
           </div>
         </div>

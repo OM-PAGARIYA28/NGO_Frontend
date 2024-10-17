@@ -14,6 +14,7 @@ const CampaignManager = () => {
   const [showForm, setShowForm] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState(null);
+  const [error, setError] = useState('');
 
   // Fetch all campaigns on component load
   useEffect(() => {
@@ -22,10 +23,16 @@ const CampaignManager = () => {
 
   const fetchCampaigns = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/getallcampaign`);
+      const token = localStorage.getItem('token'); // Get token from local storage
+      const response = await axios.get(`${API_BASE_URL}/getallcampaign`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Set token in headers
+        },
+      });
       setCampaigns(response.data);
     } catch (error) {
       console.error('Error fetching campaigns:', error);
+      setError('Failed to fetch campaigns. Please try again later.'); // Error handling
     }
   };
 
@@ -46,11 +53,17 @@ const CampaignManager = () => {
     formData.append('photo', newCampaign.photo);
 
     try {
-      await axios.post(`${API_BASE_URL}/create`, formData);
+      const token = localStorage.getItem('token'); // Get token from local storage
+      await axios.post(`${API_BASE_URL}/create`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Set token in headers
+        },
+      });
       fetchCampaigns();
       resetForm(); // Reset the form after creating
     } catch (error) {
       console.error('Error creating campaign:', error);
+      setError('Failed to create campaign. Please try again.'); // Error handling
     }
   };
 
@@ -62,21 +75,33 @@ const CampaignManager = () => {
     formData.append('photo', newCampaign.photo);
 
     try {
-      await axios.patch(`${API_BASE_URL}/${selectedCampaign._id}`, formData);
+      const token = localStorage.getItem('token'); // Get token from local storage
+      await axios.patch(`${API_BASE_URL}/${selectedCampaign._id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Set token in headers
+        },
+      });
       fetchCampaigns();
       resetForm(); // Reset the form after editing
       setEditMode(false);
     } catch (error) {
       console.error('Error updating campaign:', error);
+      setError('Failed to update campaign. Please try again.'); // Error handling
     }
   };
 
   const handleDeleteCampaign = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/${id}`);
+      const token = localStorage.getItem('token'); // Get token from local storage
+      await axios.delete(`${API_BASE_URL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Set token in headers
+        },
+      });
       fetchCampaigns();
     } catch (error) {
       console.error('Error deleting campaign:', error);
+      setError('Failed to delete campaign. Please try again.'); // Error handling
     }
   };
 
@@ -100,6 +125,7 @@ const CampaignManager = () => {
       amountToBeRaised: '',
     });
     setShowForm(false);
+    setError(''); // Reset error message on form reset
   };
 
   return (
@@ -118,6 +144,9 @@ const CampaignManager = () => {
           Add New Campaign
         </button>
       </div>
+
+      {/* Error Message */}
+      {error && <p className="text-red-500">{error}</p>}
 
       {/* Campaigns Table */}
       <div className="overflow-x-auto">
@@ -205,7 +234,7 @@ const CampaignManager = () => {
               </button>
               <button
                 className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition"
-                onClick={() => resetForm()}
+                onClick={resetForm}
               >
                 Cancel
               </button>

@@ -10,6 +10,8 @@ import Volunteer from './pages/Volunteer'; // Import Volunteer page
 import Admin from './pages/Admin'; // Import Admin page
 import './index.css'; // Import global styles
 import CampaignManager from './components/Admin/CampaignManager';
+import AdminLogin from './pages/AdminLogin';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
@@ -26,6 +28,12 @@ const App = () => {
             <Route path="/admin" element={<Admin />} /> {/* Admin Page */}
             <Route path="/dashboard" element={<div>Dashboard Content</div>} />
             <Route path="/campaigns/manage" element={<CampaignManager />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+        
+        {/* Protect the /admin route */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
         </Routes>
       </div>
     </Router>
