@@ -6,7 +6,7 @@ import {
   faInfoCircle,
   faHandsHelping,
   faImages,
-  faPhoneAlt,
+  faPhone,
   faDonate,
   faBars,
   faTimes,
@@ -64,7 +64,7 @@ const Header = () => {
           <NavItem name="About" icon={faInfoCircle} path="/about" activeTab={activeTab} setActiveTab={setActiveTab} />
           <NavItem name="Campaigns" icon={faHandsHelping} path="/campaigns" activeTab={activeTab} setActiveTab={setActiveTab} />
           <NavItem name="Gallery" icon={faImages} path="/gallery" activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem name="Contact" icon={faPhoneAlt} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem name="Contact" icon={faPhone} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
         </nav>
 
         {/* Donation and Volunteer Buttons */}
@@ -95,7 +95,7 @@ const Header = () => {
             <NavItem name="About" icon={faInfoCircle} path="/about" activeTab={activeTab} setActiveTab={setActiveTab} />
             <NavItem name="Campaigns" icon={faHandsHelping} path="/campaigns" activeTab={activeTab} setActiveTab={setActiveTab} />
             <NavItem name="Gallery" icon={faImages} path="/gallery" activeTab={activeTab} setActiveTab={setActiveTab} />
-            <NavItem name="Contact" icon={faPhoneAlt} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
+            <NavItem name="Contact" icon={faPhone} path="/contact" activeTab={activeTab} setActiveTab={setActiveTab} />
           </nav>
 
           {/* Donation and Volunteer Buttons in Sidebar */}

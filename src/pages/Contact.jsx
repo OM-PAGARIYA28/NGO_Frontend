@@ -60,7 +60,7 @@ const Contact = () => {
         {/* Contact Details (Phone, Email, Location) */}
         <div className="flex flex-col lg:flex-row justify-around items-center text-center lg:text-left space-y-6 lg:space-y-0 mb-10">
           <div className="flex flex-col items-center">
-            <i className="fas fa-phone-alt text-2xl mb-2"></i>
+            <i className="fas fa-phone text-2xl mb-2"></i>
             <a href="tel:9049977905" className="text-lg text-gray-700 hover:underline">
               Call: 9049977905
             </a>
