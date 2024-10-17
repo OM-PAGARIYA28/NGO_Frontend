@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = "https://ngo-backend-om-pagariyas-projects.vercel.app/admin/campaign";
+const API_BASE_URL = "https://ngo-backend-om-pagariyas-projects.vercel.app/upcomingwork";
 
-const CampaignManager = () => {
+const UpcomingCampaignManager = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState({
     title: '',
@@ -23,7 +23,7 @@ const CampaignManager = () => {
   const fetchCampaigns = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/getallcampaign`, {
+      const response = await axios.get(`${API_BASE_URL}/getallupcomingcampaign`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -149,7 +149,7 @@ const CampaignManager = () => {
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold text-blue-600">Campaign Manager</h1>
+        <h1 className="text-4xl font-bold text-blue-600">Upcoming Campaigns Manager</h1>
         <button
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 transition"
           onClick={() => {
@@ -267,4 +267,4 @@ const CampaignManager = () => {
   );
 };
 
-export default CampaignManager;
+export default UpcomingCampaignManager;

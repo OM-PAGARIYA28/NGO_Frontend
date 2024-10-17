@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-// Assuming you have a way to check if the user is authenticated
-const isAuthenticated = () => {
-  const token = localStorage.getItem('jwt_token'); // Check if JWT token exists
-  return !!token; // Returns true if token exists, false otherwise
-};
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('jwt_token');
 
-const PrivateRoute = ({ element }) => {
-  return isAuthenticated() ? element : <Navigate to="/admin/login" />;
+  // Check if the token exists, else redirect to login
+  if (!token) {
+    return <Navigate to="/admin/login" />;
+  }
+
+  return children ? children : <Outlet />;
 };
 
 export default PrivateRoute;
