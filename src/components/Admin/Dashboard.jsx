@@ -29,12 +29,6 @@ const Dashboard = () => {
           <h2 className="text-xl font-semibold">Messages</h2>
           <p className="text-lg">{data.messages}</p>
         </div>
-
-        {/* Internship Applications Block */}
-        <div className="bg-white shadow-lg rounded-lg p-4">
-          <h2 className="text-xl font-semibold">Internship Applications</h2>
-          <p className="text-lg">{data.internshipApplications}</p>
-        </div>
       </div>
     </div>
   );
