@@ -186,7 +186,7 @@ const UpcomingCampaignManager = () => {
                 <td className="py-3 px-5">${campaign.amountToBeRaised}</td>
                 <td className="py-3 px-5">
                   <button
-                    className="bg-yellow-500 text-white px-4 py-1 rounded-lg mr-2 hover:bg-yellow-400 transition"
+                    className="bg-yellow-500 text-white px-4 py-1 rounded-lg mr-2 hover:bg-yellow-400 transition my-2"
                     onClick={() => openEditForm(campaign)}
                   >
                     Edit

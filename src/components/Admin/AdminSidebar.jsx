@@ -5,7 +5,6 @@ import {
   faTachometerAlt, faEnvelope, faHandHoldingHeart, faFileAlt, faUsers,
   faHome, faInfoCircle, faImage, faProjectDiagram, faCog, faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
-
 const SidebarItem = ({ title, icon, children, link, isActive }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,22 +14,33 @@ const SidebarItem = ({ title, icon, children, link, isActive }) => {
 
   return (
     <div>
-      <div
-        onClick={toggleDropdown}
-        className={`flex items-center text-white py-2 px-4 hover:bg-blue-500 cursor-pointer rounded justify-between ${isActive ? 'bg-blue-600' : ''}`}
-      >
-        <div className="flex items-center">
-          <FontAwesomeIcon icon={icon} className="mr-3" />
-          {link ? (
-            <Link to={link} className="text-white">
-              {title}
-            </Link>
-          ) : (
+      {link ? (
+        // If there is a link, wrap the entire div in the Link component
+        <Link to={link} className="block">
+          <div
+            onClick={toggleDropdown}
+            className={`flex items-center text-white py-2 px-4 hover:bg-blue-500 cursor-pointer rounded justify-between ${isActive ? 'bg-blue-600' : ''}`}
+          >
+            <div className="flex items-center">
+              <FontAwesomeIcon icon={icon} className="mr-3" />
+              <span>{title}</span>
+            </div>
+            <span>{children && (isOpen ? '▲' : '▼')}</span>
+          </div>
+        </Link>
+      ) : (
+        // If there is no link, render the dropdown normally
+        <div
+          onClick={toggleDropdown}
+          className={`flex items-center text-white py-2 px-4 hover:bg-blue-500 cursor-pointer rounded justify-between ${isActive ? 'bg-blue-600' : ''}`}
+        >
+          <div className="flex items-center">
+            <FontAwesomeIcon icon={icon} className="mr-3" />
             <span>{title}</span>
-          )}
+          </div>
+          <span>{children && (isOpen ? '▲' : '▼')}</span>
         </div>
-        <span>{children && (isOpen ? '▲' : '▼')}</span>
-      </div>
+      )}
       {isOpen && <div className="ml-4">{children}</div>}
     </div>
   );
@@ -62,10 +72,6 @@ const Sidebar = () => {
         <SidebarItem title="Donations" icon={faHandHoldingHeart} isActive={location.pathname.startsWith('/donations')}>
           <SidebarItem title="View Donations" link="/donations/view" icon={faHandHoldingHeart} isActive={location.pathname === '/donations/view'} />
         </SidebarItem>
-        <SidebarItem title="Internship" icon={faFileAlt} isActive={location.pathname.startsWith('/internship')}>
-          <SidebarItem title="Internship Application" link="/internship/applications" icon={faFileAlt} isActive={location.pathname === '/internship/applications'} />
-          <SidebarItem title="Add Internship Types" link="/internship/types" icon={faFileAlt} isActive={location.pathname === '/internship/types'} />
-        </SidebarItem>
         <SidebarItem title="Campaigns" icon={faUsers} isActive={location.pathname.startsWith('/campaigns')}>
           <SidebarItem title="Manage Campaigns" link="/campaigns/manage" icon={faUsers} isActive={location.pathname === '/campaigns/manage'} />
         </SidebarItem>
@@ -77,8 +83,6 @@ const Sidebar = () => {
           <SidebarItem title="Mission" link="/aboutus/2" icon={faInfoCircle} isActive={location.pathname === '/aboutus/2'} />
           <SidebarItem title="Vision" link="/aboutus/3" icon={faInfoCircle} isActive={location.pathname === '/aboutus/3'} />
           <SidebarItem title="Impact" link="/aboutus/4" icon={faInfoCircle} isActive={location.pathname === '/aboutus/4'} />
-          <SidebarItem title="Contact Information" link="/contact" icon={faInfoCircle} isActive={location.pathname === '/contact'} />
-          <SidebarItem title="Manage FAQs" link="/faqs/manage" icon={faInfoCircle} isActive={location.pathname === '/faqs/manage'} />
         </SidebarItem>
         <SidebarItem title="Gallery" icon={faImage} isActive={location.pathname.startsWith('/gallery')}>
           <SidebarItem title="Manage" link="/gallery/manage" icon={faImage} isActive={location.pathname === '/gallery/manage'} />
