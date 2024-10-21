@@ -15,6 +15,7 @@ import UpcomingCampaignManager from './components/Admin/UpcomingCampaignManager'
 import AdminLayout from './components/Admin/AdminLayout'; // Layout for admin pages
 import Messages from './components/Admin/Messages';
 import AboutUsManager from './components/Admin/AboutUsManager';
+import GalleryManager from './components/Admin/GalleryManager';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="/campaigns/manage" element={<CampaignManager />} /> {/* Campaign Manager */}
               <Route path="/works/manage" element={<UpcomingCampaignManager />} /> {/* Upcoming Campaigns */}
               <Route path="/messages" element={<Messages />} /> {/* Messages */}
+              <Route path="/gallery/manage" element={<GalleryManager />} /> {/* Gallery */}
 
               {/* Add routes for editing About, Mission, Vision, and Impact */}
               <Route path="/aboutus/:id" element={<AboutUsManager />} /> {/* Edit Section */}

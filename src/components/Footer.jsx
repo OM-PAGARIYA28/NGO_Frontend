@@ -16,18 +16,18 @@ const Footer = () => {
           {/* Campaigns Section */}
           <div className="mx-auto mt-3">
             <h6 className="text-lg font-bold uppercase mb-4">Campaigns</h6>
-            <p><a href="#" className="text-white">Women Empowerment</a></p>
-            <p><a href="#" className="text-white">Child Education</a></p>
-            <p><a href="#" className="text-white">Food Donation</a></p>
+            <p><a href="/campaigns" className="text-white">Women Empowerment</a></p>
+            <p><a href="/campaigns" className="text-white">Child Education</a></p>
+            <p><a href="/campaigns" className="text-white">Food Donation</a></p>
           </div>
 
           {/* Useful Links Section */}
           <div className="mx-auto mt-3">
             <h6 className="text-lg font-bold uppercase mb-4">Useful Links</h6>
-            <p><a href="#" className="text-white">Home</a></p>
-            <p><a href="#" className="text-white">About</a></p>
-            <p><a href="#" className="text-white">Campaigns</a></p>
-            <p><a href="#" className="text-white">Contact</a></p>
+            <p><a href="/" className="text-white">Home</a></p>
+            <p><a href="/about" className="text-white">About</a></p>
+            <p><a href="/campaigns" className="text-white">Campaigns</a></p>
+            <p><a href="/contact" className="text-white">Contact</a></p>
           </div>
 
           {/* Contact Section */}
