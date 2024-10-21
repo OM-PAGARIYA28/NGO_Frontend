@@ -86,7 +86,6 @@ const Sidebar = () => {
         </SidebarItem>
         <SidebarItem title="Gallery" icon={faImage} isActive={location.pathname.startsWith('/gallery')}>
           <SidebarItem title="Manage" link="/gallery/manage" icon={faImage} isActive={location.pathname === '/gallery/manage'} />
-          <SidebarItem title="Edit Tiles" link="/gallery/edit" icon={faImage} isActive={location.pathname === '/gallery/edit'} />
         </SidebarItem>
         <SidebarItem title="Upcoming Works" icon={faProjectDiagram} isActive={location.pathname.startsWith('/works')}>
           <SidebarItem title="Manage" link="/works/manage" icon={faProjectDiagram} isActive={location.pathname === '/works/manage'} />
