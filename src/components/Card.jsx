@@ -1,12 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ title, description, amount, image }) => {
+  const navigate = useNavigate();
+
   // Helper function to truncate the description to a fixed length
   const truncateDescription = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
     }
     return text;
+  };
+
+  // Function to handle "READ MORE" click
+  const handleReadMore = () => {
+    // Navigate to the Campaigns page (you can modify the path as needed)
+    navigate("/campaigns");
   };
 
   return (
@@ -29,7 +38,10 @@ const Card = ({ title, description, amount, image }) => {
           {truncateDescription(description, 150)} {/* Limit to 150 characters */}
         </p>
         <div className="mt-4">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full text-xs shadow-md hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+          <button
+            onClick={handleReadMore} // Call handleReadMore on click
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full text-xs shadow-md hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+          >
             READ MORE
           </button>
         </div>

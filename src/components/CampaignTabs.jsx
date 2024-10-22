@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 
 const CampaignTabs = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const navigate = useNavigate(); // Initialize navigate hook
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -17,6 +19,11 @@ const CampaignTabs = () => {
 
     fetchCampaigns();
   }, []);
+
+  // Function to handle "See All Campaigns" button click
+  const handleSeeAllCampaigns = () => {
+    navigate('/campaigns'); // Navigate to the Campaign page (adjust the route if needed)
+  };
 
   return (
     <div className="container mx-auto py-8 mt-12 px-4 md:px-8">
@@ -42,7 +49,10 @@ const CampaignTabs = () => {
 
       {/* See All Campaigns button */}
       <div className="mt-6 text-center">
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg">
+        <button
+          onClick={handleSeeAllCampaigns} // Handle button click
+          className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg"
+        >
           See All Campaigns
         </button>
       </div>
