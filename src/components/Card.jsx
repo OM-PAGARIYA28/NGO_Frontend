@@ -18,7 +18,7 @@ const Card = ({ title, description, amount, image }) => {
       />
       <div className="p-6 bg-gray-50 rounded-b-lg flex-grow">
         <p className="text-sm text-gray-500 font-medium">
-          To Be Raised:{" "}
+          To Be Raised :{" "}
           <span className="text-green-600 font-bold">
             ₹{amount ? Number(amount).toLocaleString() : "N/A"}
           </span>
