@@ -23,13 +23,13 @@ const Volunteer = () => {
         <div className="container mx-auto flex justify-center">
           <div className="flex space-x-2">
             <a
-              href="/volunteer-form" // Update with your actual link or function
+              href="https://forms.gle/a626tDwJcobRacJR7"
               className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
             >
               Be a Volunteer
             </a>
             <a
-              href="/internship-form" // Update with your actual link or function
+              href="https://forms.gle/1r1Dv9wbxHcPPnzQ8"
               className="bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
             >
               Apply for Internship
