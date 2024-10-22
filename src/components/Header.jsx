@@ -42,7 +42,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-4 px-4">
         <div className="flex items-center space-x-4">
           <img
-            src="https://hdfindia.org/admin/img/HDF%20logo1.jpg"
+            src="/HDFlogo.png"
             alt="HDF Logo"
             className="h-10 w-10 rounded-full"
           />
